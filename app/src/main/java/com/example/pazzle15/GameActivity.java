@@ -3,26 +3,24 @@ package com.example.pazzle15;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,6 +36,7 @@ public class GameActivity extends AppCompatActivity {
     private SharedPreferences pref;
 
     private Chronometer chronometer;
+    private long time;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -45,19 +44,28 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        findViewById(R.id.refresh).setOnClickListener(v1 -> refresh());
+        findViewById(R.id.back).setOnClickListener(v239573125 -> finish());
+
 
         pref = this.getSharedPreferences("CountPref", Context.MODE_PRIVATE);
         count = pref.getInt("MY_COUNT", 0);
+        time = pref.getLong("MY_TIME", 0);
 
         String date = pref.getString("MY_STATE", "!");
+
+        if (time != 0) chronometer.setBase(SystemClock.elapsedRealtime() + time);
+
         if (date.equals("!")) {
             refresh();
             return;
         }
         String[] s = date.split("#");
-        for (int i = 0; i < s.length; i++) {
-            values.add(s[i]);
-        }
+        values.addAll(Arrays.asList(s));
+
+//        for (int i = 0; i < s.length; i++) {
+//            values.add(s[i]);
+//        }
 
         RelativeLayout relativeLayout = findViewById(R.id.relativeLayout);
 
@@ -74,26 +82,20 @@ public class GameActivity extends AppCompatActivity {
             currentBtn.setTag(new Point(currentX, currentY));
         }
 
-
-        findViewById(R.id.refresh).setOnClickListener(v1 -> refresh());
-        findViewById(R.id.back).setOnClickListener(v239573125 -> finish());
-
-//        initViews();
-//        initData();
-//        shuffle();
-//        values.add("");
         loadData();
 
         chronometer = findViewById(R.id.chronometer);
         chronometer.start();
-
-        if (!isSolvable()) refresh();
+        chronometer.setFormat("%s");
+        chronometer.setBase(SystemClock.elapsedRealtime());
     }
 
 
+    @SuppressLint("CutPasteId")
     public void refresh() {
+        ImageView image = findViewById(R.id.refresh);
+        image.setClickable(false);
         count = 0;
-        setContentView(R.layout.activity_game);
         values.clear();
         initViews();
         initData();
@@ -101,24 +103,13 @@ public class GameActivity extends AppCompatActivity {
         y = 3;
         shuffle();
         loadData();
-
-        findViewById(R.id.refresh).setOnClickListener(v -> refresh());
-
-        while (!isSolvable()) {
-            values.clear();
-            initViews();
-            initData();
-            x = 3;
-            y = 3;
-            shuffle();
-            loadData();
-        }
-
-        findViewById(R.id.back).setOnClickListener(v -> finish());
-
-        count = 0;
-        TextView k = findViewById(R.id.count);
-        k.setText("Count: " + 0);
+        ImageView image2 = findViewById(R.id.refresh);
+        image2.setOnClickListener(v -> refresh());
+        image2.setClickable(true);
+        while (!isSolvable()) refresh();
+        chronometer = findViewById(R.id.chronometer);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
     }
 
     private void initViews() {
@@ -137,7 +128,6 @@ public class GameActivity extends AppCompatActivity {
             currentBtn.setTag(new Point(currentX, currentY));
 
             if (currentX == 3 && currentY == 3) currentBtn.setVisibility(INVISIBLE);
-
         }
     }
 
@@ -185,10 +175,15 @@ public class GameActivity extends AppCompatActivity {
         }
 
         chronometer.stop();
+        time = chronometer.getBase();
+        chronometer.setBase(SystemClock.elapsedRealtime());
+
+
         Intent intent = new Intent(GameActivity.this, WinActivity.class);
         intent.putExtra("COUNT", count);
-        count = 0;
+        intent.putExtra("TIME", time);
         startActivity(intent);
+        count = 0;
         finish();
 
     }
@@ -247,19 +242,38 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
+        pref.edit().putLong("TIME", SystemClock.elapsedRealtime() - chronometer.getBase()).apply();
+        chronometer.stop();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        time = pref.getLong("TIME", 0);
+        if (time != 0) chronometer.setBase(SystemClock.elapsedRealtime() - time);
+
+        chronometer.start();
+    }
+
+    @Override
+    protected void onStop() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < buttons.length; i++) {
+        for (Button[] button : buttons) {
             for (int j = 0; j < buttons.length; j++) {
-                stringBuilder.append(buttons[i][j].getText()).append("#");
+                stringBuilder.append(button[j].getText()).append("#");
             }
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         pref.edit().putString("MY_STATE", stringBuilder.toString()).apply();
-
-
         pref.edit().putInt("MY_COUNT", count).apply();
+        pref.edit().putLong("TIME", SystemClock.elapsedRealtime() - chronometer.getBase()).apply();
+
+        time = SystemClock.elapsedRealtime() - chronometer.getBase();
+        chronometer.stop();
+
+        super.onStop();
     }
 }

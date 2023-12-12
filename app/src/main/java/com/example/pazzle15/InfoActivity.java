@@ -16,7 +16,7 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
 
         findViewById(R.id.telegram).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/brxnw"))));
-        findViewById(R.id.instagram).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/burhoniddinoff"))));
+        findViewById(R.id.gita).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/gitauz"))));
         findViewById(R.id.github).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/burhoniddinoff"))));
 
         findViewById(R.id.menu).setOnClickListener(v -> finish());

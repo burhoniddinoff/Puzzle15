@@ -17,7 +17,7 @@ public class WinActivity extends AppCompatActivity {
     private int top3 = 0;
     private SharedPreferences pref;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,15 +31,15 @@ public class WinActivity extends AppCompatActivity {
         reyting();
 
         TextView medal1 = findViewById(R.id.medal_1);
-        medal1.setText("" + top1);
+        medal1.setText(String.valueOf(top1));
 
         TextView medal2 = findViewById(R.id.medal_2);
-        medal2.setText("" + top2);
+        medal2.setText(String.valueOf(top2));
 
         TextView medal3 = findViewById(R.id.medal_3);
-        medal3.setText("" + top3);
+        medal3.setText(String.valueOf(top3));
 
-        findViewById(R.id.refresh2).setOnClickListener(v -> {
+        findViewById(R.id.refresh_win).setOnClickListener(v -> {
             Intent intent = new Intent(WinActivity.this, GameActivity.class);
             startActivity(intent);
             finish();

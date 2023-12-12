@@ -286,7 +286,7 @@
     <!--        android:src="@drawable/ic_refresh_icon" />-->
 
     <ImageView
-        android:id="@+id/refresh"
+        android:id="@+id/refresh_win"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center"

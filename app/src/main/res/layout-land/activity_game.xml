@@ -165,37 +165,39 @@
         </RelativeLayout>
 
 
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom|start"
-            android:layout_marginStart="30dp"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/bg_1">
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/bg_1">
 
-            <TextView
-                android:id="@+id/count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_weight="1"
-                android:text="Count: "
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:text="Count: "
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
 
-            <Chronometer
-                android:id="@+id/chronometer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:gravity="center"
-                android:textColor="@color/white" />
+                    <Chronometer
+                        android:id="@+id/chronometer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:gravity="center"
+                        android:textColor="@color/white" />
 
-        </LinearLayout>
+                </LinearLayout>
+
+
 
 
     </FrameLayout>
