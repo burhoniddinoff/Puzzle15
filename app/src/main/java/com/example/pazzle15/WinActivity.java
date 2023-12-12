@@ -31,20 +31,19 @@ public class WinActivity extends AppCompatActivity {
         reyting();
 
         TextView medal1 = findViewById(R.id.medal_1);
-        medal1.setText("First place: " + top1);
+        medal1.setText("" + top1);
 
         TextView medal2 = findViewById(R.id.medal_2);
-        medal2.setText("Second place: " + top2);
+        medal2.setText("" + top2);
 
         TextView medal3 = findViewById(R.id.medal_3);
-        medal3.setText("Third place: " + top3);
+        medal3.setText("" + top3);
 
         findViewById(R.id.refresh2).setOnClickListener(v -> {
-            Intent intent = new Intent(WinActivity.this, MainActivity.class);
+            Intent intent = new Intent(WinActivity.this, GameActivity.class);
             startActivity(intent);
             finish();
         });
-
 
     }
 

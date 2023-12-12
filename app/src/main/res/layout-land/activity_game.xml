@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/img_99"
+    android:orientation="vertical"
+    tools:context=".GameActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/back"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="start"
+                android:layout_margin="13dp"
+                android:background="@drawable/button_7"
+                android:padding="14dp"
+                android:src="@drawable/ic_back_icon_3" />
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="180dp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:src="@drawable/img_3" />-->
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/refresh"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="13dp"
+                android:background="@drawable/button_7"
+                android:padding="13dp"
+                android:src="@drawable/ic_refresh_icon" />
+
+
+        </FrameLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="60dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn1"
+                style="@style/PuzzleButton"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn2"
+                style="@style/PuzzleButton"
+                android:layout_toEndOf="@id/btn1"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn3"
+                style="@style/PuzzleButton"
+                android:layout_toEndOf="@id/btn2"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn4"
+                style="@style/PuzzleButton"
+                android:layout_toEndOf="@id/btn3"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn5"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn1"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn6"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn1"
+                android:layout_toEndOf="@id/btn5"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn7"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn1"
+                android:layout_toEndOf="@id/btn6"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn8"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn1"
+                android:layout_toEndOf="@id/btn7"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn9"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn5"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn10"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn5"
+                android:layout_toEndOf="@id/btn5"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn11"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn5"
+                android:layout_toEndOf="@id/btn6"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn12"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn5"
+                android:layout_toEndOf="@id/btn7"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn13"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn9"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn14"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn9"
+                android:layout_toEndOf="@id/btn5"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn15"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn9"
+                android:layout_toEndOf="@id/btn6"
+                android:background="@drawable/button_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn16"
+                style="@style/PuzzleButton"
+                android:layout_below="@id/btn9"
+                android:layout_toEndOf="@id/btn7"
+                android:background="@drawable/button_5" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/bg_1">
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="Count: "
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <Chronometer
+                android:id="@+id/chronometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+</LinearLayout>

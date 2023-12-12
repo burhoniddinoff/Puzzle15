@@ -3,7 +3,6 @@ package com.example.pazzle15;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -18,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
 //        else {
             Handler handler = new Handler(getMainLooper());
             handler.postDelayed(() -> {
-                Intent intent = new Intent(SplashActivity.this, InfoActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }, 2000);
@@ -26,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void openInfoScreen() {
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        Intent intent = new Intent(SplashActivity.this, GameActivity.class);
         startActivity(intent);
         finish();
     }
