@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 public class WinActivity extends AppCompatActivity {
@@ -23,7 +25,7 @@ public class WinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
 
-        pref = this.getSharedPreferences("prefWin", Context.MODE_PRIVATE);
+        pref = this.getSharedPreferences("STATE", Context.MODE_PRIVATE);
         count = getIntent().getIntExtra("COUNT", 0);
         top1 = pref.getInt("top1", 0);
         top2 = pref.getInt("top2", 0);
@@ -38,6 +40,7 @@ public class WinActivity extends AppCompatActivity {
 
         TextView medal3 = findViewById(R.id.medal_3);
         medal3.setText(String.valueOf(top3));
+
 
         findViewById(R.id.refresh_win).setOnClickListener(v -> {
             Intent intent = new Intent(WinActivity.this, GameActivity.class);

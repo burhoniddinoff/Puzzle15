@@ -20,15 +20,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 
 @SuppressLint("SetTextI18n")
 public class GameActivity extends AppCompatActivity {
-    private Button[][] buttons = new Button[4][4];
-    private List<String> values = new ArrayList<>();
+    private final Button[][] buttons = new Button[4][4];
+    private final List<String> values = new ArrayList<>();
     private int x = 3;
     private int y = 3;
     static int count = 0;
@@ -44,28 +43,27 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        findViewById(R.id.refresh).setOnClickListener(v1 -> refresh());
-        findViewById(R.id.back).setOnClickListener(v239573125 -> finish());
+        findViewById(R.id.refresh).setOnClickListener(v -> refresh());
+        findViewById(R.id.back).setOnClickListener(v -> finish());
 
-
-        pref = this.getSharedPreferences("CountPref", Context.MODE_PRIVATE);
-        count = pref.getInt("MY_COUNT", 0);
-        time = pref.getLong("MY_TIME", 0);
-
+        chronometer = findViewById(R.id.chronometer);
+        pref = this.getSharedPreferences("STATE", Context.MODE_PRIVATE);
         String date = pref.getString("MY_STATE", "!");
 
-        if (time != 0) chronometer.setBase(SystemClock.elapsedRealtime() + time);
+        count = pref.getInt("COUNT", 0);
+        time = pref.getLong("TIME", 0);
 
+        if (time != 0) {
+            chronometer.setBase(SystemClock.elapsedRealtime() + time);
+        }
         if (date.equals("!")) {
             refresh();
             return;
         }
-        String[] s = date.split("#");
-        values.addAll(Arrays.asList(s));
 
-//        for (int i = 0; i < s.length; i++) {
-//            values.add(s[i]);
-//        }
+        String[] s = date.split("#");
+
+        Collections.addAll(values, s);
 
         RelativeLayout relativeLayout = findViewById(R.id.relativeLayout);
 
@@ -81,18 +79,17 @@ public class GameActivity extends AppCompatActivity {
             currentBtn.setOnClickListener(this::onClick);
             currentBtn.setTag(new Point(currentX, currentY));
         }
-
         loadData();
-
         chronometer = findViewById(R.id.chronometer);
-        chronometer.start();
         chronometer.setFormat("%s");
         chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
     }
 
 
     @SuppressLint("CutPasteId")
     public void refresh() {
+
         ImageView image = findViewById(R.id.refresh);
         image.setClickable(false);
         count = 0;
@@ -106,10 +103,13 @@ public class GameActivity extends AppCompatActivity {
         ImageView image2 = findViewById(R.id.refresh);
         image2.setOnClickListener(v -> refresh());
         image2.setClickable(true);
-        while (!isSolvable()) refresh();
+        while (!isSolvable()) {
+            refresh();
+        }
         chronometer = findViewById(R.id.chronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
+        
     }
 
     private void initViews() {
@@ -118,17 +118,19 @@ public class GameActivity extends AppCompatActivity {
         TextView v = findViewById(R.id.count);
         v.setText("Count: " + count);
 
-        for (int i = 0; i < relativeLayout.getChildCount(); i++) {
+        for (int i = 0; i < 16; i++) {
             int currentX = i / 4;
             int currentY = i % 4;
 
             Button currentBtn = (Button) relativeLayout.getChildAt(i);
             buttons[currentX][currentY] = currentBtn;
+            currentBtn.setVisibility(View.VISIBLE);
             currentBtn.setOnClickListener(this::onClick);
             currentBtn.setTag(new Point(currentX, currentY));
 
             if (currentX == 3 && currentY == 3) currentBtn.setVisibility(INVISIBLE);
         }
+
     }
 
     private void onClick(View v) {
@@ -158,7 +160,6 @@ public class GameActivity extends AppCompatActivity {
             if (x == 3 && y == 3) checkWin();
         }
     }
-
 
     private void initData() {
         for (int i = 1; i < 16; i++) {
@@ -191,12 +192,12 @@ public class GameActivity extends AppCompatActivity {
     private void loadData() {
         for (int i = 0; i < 16; i++) {
             if (values.get(i).equals("0")) {
-                buttons[i / 4][i % 4].setVisibility(View.INVISIBLE);
+                buttons[i / 4][i % 4].setVisibility(INVISIBLE);
                 x = i / 4;
                 y = i % 4;
             }
-            buttons[i / 4][i % 4].setText(values.get(i));
 
+            buttons[i / 4][i % 4].setText(values.get(i));
         }
     }
 
@@ -260,19 +261,22 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
+
         StringBuilder stringBuilder = new StringBuilder();
         for (Button[] button : buttons) {
             for (int j = 0; j < buttons.length; j++) {
                 stringBuilder.append(button[j].getText()).append("#");
             }
         }
+
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         pref.edit().putString("MY_STATE", stringBuilder.toString()).apply();
-        pref.edit().putInt("MY_COUNT", count).apply();
+        pref.edit().putInt("COUNT", count).apply();
         pref.edit().putLong("TIME", SystemClock.elapsedRealtime() - chronometer.getBase()).apply();
 
         time = SystemClock.elapsedRealtime() - chronometer.getBase();
         chronometer.stop();
+
 
         super.onStop();
     }

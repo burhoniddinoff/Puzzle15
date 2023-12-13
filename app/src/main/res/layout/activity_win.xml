@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context=".WinActivity">
 
-
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -88,7 +87,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <Chronometer
                     android:id="@+id/time_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,7 +160,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <Chronometer
                     android:id="@+id/time_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -233,7 +232,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <Chronometer
                     android:id="@+id/time_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
