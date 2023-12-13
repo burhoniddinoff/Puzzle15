@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Pazzle15</string>
     <string name="count_0">Count: 0</string>
+    <string name="todo">TODO</string>
+    <string name="count">Count:</string>
+    <string name="the_puzzle">The 15 Puzzle, also known as the Game of Fifteen, is a classic sliding puzzle that consists of a 4x4 grid with numbered tiles. The tiles are initially arranged in ascending order from left to right and from top to bottom, with one tile missing. The objective of the puzzle is to rearrange the tiles by sliding them into the empty space in such a way that the numbers are in numerical order.
+        \n\n Here are the basic rules of the 15 Puzzle:
+        \n\n 1.The puzzle is played on a 4x4 grid, and there are 15 numbered tiles and one empty space.
+        \n2. The tiles are initially arranged in numerical order, with the empty space positioned randomly.
+        \n3. Tiles can only be moved into the empty space, creating a gap that other tiles can slide into.
+        \n4. The goal is to rearrange the tiles into numerical order by sliding them around the empty space.
+        \n\n The puzzle was invented by Noyes Chapman in 1874, and it became a popular toy during the late 19th century. The simplicity of the puzzle conceals a challenging mathematical problem, and it is often used as a brain teaser.
+        \n\n The puzzle has an interesting mathematical property related to its solvability. Not all configurations of the puzzle can be solved from any given starting position. If the initial configuration is such that the number of inversions (pairs of tiles that are out of order) plus the row number of the empty space is even, the puzzle is solvable. Otherwise, it is not solvable.
+        \n\n The 15 Puzzle has been the inspiration for various computer games and applications, and it continues to be a popular recreational activity and a subject of study in the field of combinatorics. Many online versions and mobile apps of the 15 Puzzle are available for enthusiasts to play and enjoy.</string>
+    <string name="moves">Moves</string>
+    <string name="_123">123</string>
+    <string name="top_3_results">Top 3 Results</string>
 </resources>

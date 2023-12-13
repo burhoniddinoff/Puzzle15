@@ -11,7 +11,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -31,7 +32,8 @@
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_gravity="center|top"
-                android:src="@drawable/img_3" />
+                android:src="@drawable/img_3"
+                android:contentDescription="@string/todo" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/refresh"
@@ -179,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
-                android:text="Count: "
+                android:text="@string/count"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 

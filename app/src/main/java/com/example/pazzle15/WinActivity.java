@@ -27,6 +27,7 @@ public class WinActivity extends AppCompatActivity {
 
         pref = this.getSharedPreferences("STATE", Context.MODE_PRIVATE);
         count = getIntent().getIntExtra("COUNT", 0);
+
         top1 = pref.getInt("top1", 0);
         top2 = pref.getInt("top2", 0);
         top3 = pref.getInt("top3", 0);
@@ -34,6 +35,7 @@ public class WinActivity extends AppCompatActivity {
 
         TextView medal1 = findViewById(R.id.medal_1);
         medal1.setText(String.valueOf(top1));
+
 
         TextView medal2 = findViewById(R.id.medal_2);
         medal2.setText(String.valueOf(top2));
@@ -51,22 +53,25 @@ public class WinActivity extends AppCompatActivity {
     }
 
     private void reyting() {
-        if (top1 == 0 || top1 == count) {
+        if (top1 == 0) {
             top1 = count;
         } else if (top1 > count) {
             top2 = top1;
             top1 = count;
-        } else if (top2 == 0 || top2 == count) {
+        } else if (top2 == 0 || top1 != count) {
             top2 = count;
         } else if (top2 > count && top1 != count) {
             top3 = top2;
             top2 = count;
-        } else if (top3 == 0 || top3 == count) {
+        } else if (top3 == 0 && top1 != count && top2 != count) {
             top3 = count;
-        } else if (top3 > count && top2 != count) {
+        } else if (top3 > count && top1 != count && top2 != count) {
             top3 = count;
         }
+
+
     }
+
 
     @Override
     protected void onStop() {

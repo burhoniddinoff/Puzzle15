@@ -56,6 +56,7 @@ public class GameActivity extends AppCompatActivity {
         if (time != 0) {
             chronometer.setBase(SystemClock.elapsedRealtime() + time);
         }
+
         if (date.equals("!")) {
             refresh();
             return;
@@ -79,17 +80,22 @@ public class GameActivity extends AppCompatActivity {
             currentBtn.setOnClickListener(this::onClick);
             currentBtn.setTag(new Point(currentX, currentY));
         }
+        shuffle();
+//        values.add("0");
         loadData();
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("%s");
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
+
+        while (!isSolvable()) {
+            refresh();
+        }
     }
 
 
     @SuppressLint("CutPasteId")
     public void refresh() {
-
         ImageView image = findViewById(R.id.refresh);
         image.setClickable(false);
         count = 0;
@@ -100,16 +106,30 @@ public class GameActivity extends AppCompatActivity {
         y = 3;
         shuffle();
         loadData();
+
         ImageView image2 = findViewById(R.id.refresh);
         image2.setOnClickListener(v -> refresh());
         image2.setClickable(true);
+
         while (!isSolvable()) {
             refresh();
         }
+
         chronometer = findViewById(R.id.chronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
-        
+    }
+
+    private void loadData() {
+        for (int i = 0; i < 16; i++) {
+            if (values.get(i).equals("0")) {
+                buttons[i / 4][i % 4].setVisibility(INVISIBLE);
+                x = i / 4;
+                y = i % 4;
+            }
+
+            buttons[i / 4][i % 4].setText(values.get(i));
+        }
     }
 
     private void initViews() {
@@ -176,30 +196,18 @@ public class GameActivity extends AppCompatActivity {
         }
 
         chronometer.stop();
-        time = chronometer.getBase();
-        chronometer.setBase(SystemClock.elapsedRealtime());
-
+//        time = SystemClock.elapsedRealtime() - chronometer.getBase();
 
         Intent intent = new Intent(GameActivity.this, WinActivity.class);
         intent.putExtra("COUNT", count);
-        intent.putExtra("TIME", time);
+        intent.putExtra("TIME", chronometer.getBase());
         startActivity(intent);
         count = 0;
         finish();
 
     }
 
-    private void loadData() {
-        for (int i = 0; i < 16; i++) {
-            if (values.get(i).equals("0")) {
-                buttons[i / 4][i % 4].setVisibility(INVISIBLE);
-                x = i / 4;
-                y = i % 4;
-            }
 
-            buttons[i / 4][i % 4].setText(values.get(i));
-        }
-    }
 
     private void shuffle() {
         Collections.shuffle(values);
