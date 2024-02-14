@@ -135,13 +135,6 @@
             android:background="@drawable/bg_1"
             android:gravity="center">
 
-            <!--            <ImageView-->
-            <!--                android:layout_width="60dp"-->
-            <!--                android:layout_height="60dp"-->
-            <!--                android:layout_marginStart="10dp"-->
-            <!--                android:padding="12dp"-->
-            <!--                android:src="@drawable/ic_telegram_icon_5" />-->
-
 
             <TextView
                 android:layout_width="wrap_content"

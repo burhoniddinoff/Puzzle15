@@ -3,7 +3,11 @@
     <style name="Base.Theme.Pazzle15" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
     </style>
 
     <style name="Theme.Pazzle15" parent="Base.Theme.Pazzle15" />
+
 </resources>

@@ -14,14 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="80dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/bg_1"
         android:gravity="center">
 
-<!--        <ImageView-->
-<!--            android:layout_width="60dp"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:padding="12dp"-->
-<!--            android:src="@drawable/ic_info_1" />-->
+        <!--        <ImageView-->
+        <!--            android:layout_width="60dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:padding="12dp"-->
+        <!--            android:src="@drawable/ic_info_1" />-->
 
         <TextView
             android:id="@+id/count"
@@ -34,12 +35,32 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/statistic"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginHorizontal="80dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/bg_1"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Statistics"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginHorizontal="80dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginVertical="5dp"
         android:background="@drawable/bg_1"
         android:gravity="center">
 
@@ -58,6 +79,7 @@
         android:layout_height="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginHorizontal="80dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bg_1"
         android:gravity="center">
 
