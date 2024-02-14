@@ -1,14 +1,11 @@
 package com.example.pazzle15;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class StatisticsActivity extends AppCompatActivity {
     private int top1 = 0;
@@ -16,11 +13,13 @@ public class StatisticsActivity extends AppCompatActivity {
     private int top3 = 0;
 
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+
 
         MyShared myShared = MyShared.getInstance(this);
         int[] arr = myShared.getResults();
@@ -47,6 +46,18 @@ public class StatisticsActivity extends AppCompatActivity {
             startActivity(new Intent(this, GameActivity.class));
             finish();
         });
+
+        if (((TextView) findViewById(R.id.static_1)).getText().equals("0")) {
+            ((TextView) findViewById(R.id.static_1)).setText("No");
+        }
+
+        if (((TextView) findViewById(R.id.static_2)).getText().equals("0")) {
+            ((TextView) findViewById(R.id.static_2)).setText("No");
+        }
+
+        if (((TextView) findViewById(R.id.static_3)).getText().equals("0")) {
+            ((TextView) findViewById(R.id.static_3)).setText("No");
+        }
 
     }
 }

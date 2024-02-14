@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,7 +22,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="start"
-                android:layout_margin="13dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/button_7"
                 android:padding="14dp"
                 android:src="@drawable/ic_back_icon_3" />
@@ -32,15 +32,16 @@
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_gravity="center|top"
-                android:src="@drawable/img_3"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:src="@drawable/img_3" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/refresh"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="top|end"
-                android:layout_margin="13dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="14dp"
                 android:background="@drawable/button_7"
                 android:padding="13dp"
                 android:src="@drawable/ic_refresh_icon" />

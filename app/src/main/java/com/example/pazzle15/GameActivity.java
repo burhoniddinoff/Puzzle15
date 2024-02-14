@@ -212,7 +212,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void menuButton() {
                 refresh();
-                startActivity(new Intent(GameActivity.this, MainActivity.class));
+//                startActivity(new Intent(GameActivity.this, MainActivity.class));
                 finish();
             }
         });
