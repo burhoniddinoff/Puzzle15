@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Chronometer;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,11 +26,11 @@ public class WinActivity extends AppCompatActivity {
         count = getIntent().getIntExtra("COUNT", 0);
         time = getIntent().getLongExtra("TIME", 0);
 
-//        TextView textView = findViewById(R.id.medal_1);
-//        textView.setText(String.valueOf(count));
+        TextView textView = findViewById(R.id.medal_1);
+        textView.setText(String.valueOf(count));
 
-//        Chronometer chronometer = findViewById(R.id.time_1);
-//        chronometer.setBase(time);
+        Chronometer chronometer = findViewById(R.id.time_1);
+        chronometer.setBase(time);
 
 
         findViewById(R.id.refresh_win).setOnClickListener(v -> {

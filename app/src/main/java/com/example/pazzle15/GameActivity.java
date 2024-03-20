@@ -5,16 +5,16 @@ import static android.view.View.VISIBLE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,7 +35,6 @@ public class GameActivity extends AppCompatActivity {
     long time = 0;
     private static final int N = 4;
     private SharedPreferences pref;
-
     private Chronometer chronometer;
 
     @SuppressLint("MissingInflatedId")
@@ -66,19 +65,23 @@ public class GameActivity extends AppCompatActivity {
 
         Collections.addAll(values, s);
 
-        RelativeLayout relativeLayout = findViewById(R.id.relativeLayout);
 
         TextView v = findViewById(R.id.count);
         v.setText("Count: " + count);
-        for (int i = 0; i < 16; i++) {
-            int currentX = i / 4;
-            int currentY = i % 4;
 
-            Button currentBtn = (Button) relativeLayout.getChildAt(i);
-            buttons[currentX][currentY] = currentBtn;
-            currentBtn.setVisibility(View.VISIBLE);
-            currentBtn.setOnClickListener(this::onClick);
-            currentBtn.setTag(new Point(currentX, currentY));
+        LinearLayout linearLayout = findViewById(R.id.linearLayout);
+        for (int i = 0; i < 4; i++) {
+            LinearLayout liner = (LinearLayout) linearLayout.getChildAt(i);
+            for (int j = 0; j < 4; j++) {
+                Button btn = (Button) liner.getChildAt(j);
+                buttons[i][j] = btn;
+                btn.setVisibility(View.VISIBLE);
+                btn.setOnClickListener(this::onClick);
+                btn.setTag(new Point(i, j));
+
+            }
+
+
         }
         loadData();
         chronometer = findViewById(R.id.chronometer);
@@ -132,22 +135,26 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        RelativeLayout relativeLayout = findViewById(R.id.relativeLayout);
+        LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
         TextView v = findViewById(R.id.count);
         v.setText("Count: " + count);
 
-        for (int i = 0; i < 16; i++) {
-            int currentX = i / 4;
-            int currentY = i % 4;
+        for (int i = 0; i < 4; i++) {
+            LinearLayout liner = (LinearLayout) linearLayout.getChildAt(i);
 
-            Button currentBtn = (Button) relativeLayout.getChildAt(i);
-            buttons[currentX][currentY] = currentBtn;
-            currentBtn.setVisibility(View.VISIBLE);
-            currentBtn.setOnClickListener(this::onClick);
-            currentBtn.setTag(new Point(currentX, currentY));
+            for (int j = 0; j < 4; j++) {
 
-            if (currentX == 3 && currentY == 3) currentBtn.setVisibility(INVISIBLE);
+                Button btn = (Button) liner.getChildAt(j);
+                buttons[i][j] = btn;
+
+                btn.setVisibility(View.VISIBLE);
+                btn.setOnClickListener(this::onClick);
+                btn.setTag(new Point(i, j));
+
+                if (i == 3 && j == 3) btn.setVisibility(INVISIBLE);
+
+            }
         }
 
     }
@@ -187,11 +194,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void checkWin() {
-        RelativeLayout relativeLayout = findViewById(R.id.relativeLayout);
+        Log.d("TTTT", "win");
 
-        for (int i = 1; i < 16; i++) {
-            Button btn = (Button) relativeLayout.getChildAt(i - 1);
-            if (!btn.getText().equals(String.valueOf(i))) return;
+        for (int i = 0; i < 15; i++) {
+            Log.d("TTT", buttons[i % 4][i / 4].getText().toString() + "//" + (i + 1));
+            if (!buttons[i / 4][i % 4].getText().equals(String.valueOf(i + 1))) return;
         }
 
         MyShared myShared = MyShared.getInstance(this);
@@ -201,6 +208,7 @@ public class GameActivity extends AppCompatActivity {
 
 
         MyDialog dialog = new MyDialog();
+        dialog.setTime(count, chronometer.getBase());
         dialog.setCancelable(false);
         dialog.setSelectListener(new SelectListener() {
 
@@ -355,5 +363,7 @@ public class GameActivity extends AppCompatActivity {
         pref.edit().putInt("COUNT", count).apply();
         pref.edit().putLong("TIME", chronometer.getBase() - SystemClock.elapsedRealtime()).apply();
     }
+
+
 
 }
